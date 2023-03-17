@@ -35,7 +35,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <nav_msgs/OccupancyGrid.h>
-
+#include <opencv2/core/types_c.h>
 
 
 
@@ -129,7 +129,7 @@ public:
   /// @return the cv::Mat binary image.
   const cv::Mat& binaryMap() const {return m_binaryMap;}
   /// @return the size of the cv::Mat binary image. Note that x/y are swapped wrt. height/width
-  inline const CvSize size() const {return m_binaryMap.size();}
+  inline const cv::Size size() const {return m_binaryMap.size();}
 
   const static uchar FREE = 255;  ///< char value for "free": 255
   const static uchar OCCUPIED = 0; ///< char value for "free": 0

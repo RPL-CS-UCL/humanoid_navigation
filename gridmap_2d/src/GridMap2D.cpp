@@ -59,7 +59,7 @@ GridMap2D::~GridMap2D() {
 }
 
 void GridMap2D::updateDistanceMap(){
-  cv::distanceTransform(m_binaryMap, m_distMap, CV_DIST_L2, CV_DIST_MASK_PRECISE);
+  cv::distanceTransform(m_binaryMap, m_distMap, cv::DIST_L2, cv::DIST_MASK_PRECISE);
   // distance map now contains distance in meters:
   m_distMap = m_distMap * m_mapInfo.resolution;
 }
@@ -125,7 +125,7 @@ void GridMap2D::setMap(const cv::Mat& binaryMap){
   m_binaryMap = binaryMap.clone();
   m_distMap = cv::Mat(m_binaryMap.size(), CV_32FC1);
 
-  cv::distanceTransform(m_binaryMap, m_distMap, CV_DIST_L2, CV_DIST_MASK_PRECISE);
+  cv::distanceTransform(m_binaryMap, m_distMap, cv::DIST_L2, cv::DIST_MASK_PRECISE);
   // distance map now contains distance in meters:
   m_distMap = m_distMap * m_mapInfo.resolution;
 
@@ -136,7 +136,7 @@ void GridMap2D::setMap(const cv::Mat& binaryMap){
 void GridMap2D::inflateMap(double inflationRadius){
   m_binaryMap = (m_distMap > inflationRadius );
   // recompute distance map with new binary map:
-  cv::distanceTransform(m_binaryMap, m_distMap, CV_DIST_L2, CV_DIST_MASK_PRECISE);
+  cv::distanceTransform(m_binaryMap, m_distMap, cv::DIST_L2, cv::DIST_MASK_PRECISE);
   m_distMap = m_distMap * m_mapInfo.resolution;
 }
 

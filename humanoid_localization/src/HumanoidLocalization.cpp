@@ -806,15 +806,12 @@ void HumanoidLocalization::voxelGridSampling(const PointCloud & pc, pcl::PointCl
    uniformSampling.setInputCloud(cloudPtr);
    pcl::PointCloud<pcl::PointXYZ>::Ptr filteredCloud;
    uniformSampling.setRadiusSearch(search_radius);
-#if PCL_MINOR_VERSION == 8
+
    uniformSampling.filter(*filteredCloud);
    for (auto ind : *uniformSampling.getIndices())
    {
      sampledIndices.push_back(ind);
    }
-#else
-   uniformSampling.compute(sampledIndices);
-#endif
 }
 
 void HumanoidLocalization::pointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr& msg) {
